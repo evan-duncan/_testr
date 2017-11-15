@@ -1,0 +1,25 @@
+.Footer--body {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    margin: 15px 0;
+
+}
+
+.Footer--copyright {
+    margin-top: 25px; 
+}
+
+.Footer--linksList {
+    list-style: none;
+    padding: 0;
+}
+
+.Footer--linksListItem {
+    display: inline;
+    padding: 0 15px;
+}
+

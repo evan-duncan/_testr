@@ -1,0 +1,409 @@
+swagger: '2.0'
+info:
+  description: >-
+    This is a sample server Petstore server.  You can find out more about    
+    Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
+    #swagger](http://swagger.io/irc/).      For this sample, you can use the api
+    key `special-key` to test the authorization     filters.
+  version: 1.0.0
+  title: Api
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: GPLv3
+    url: 'https://www.gnu.org/copyleft/gpl.html'
+host: www.testr.io
+basePath: /api
+tags:
+  - name: auth
+    description: Authentication
+    externalDocs:
+      description: Find out more about authentication
+      url: 'http://swagger.io'
+  - name: plans
+    description: Everything about Test Plans
+    externalDocs:
+      description: Find out more
+      url: 'http://swagger.io'
+  - name: users
+    description: Operations about users
+    externalDocs:
+      description: Find out more about our store
+      url: 'http://swagger.io'
+  - name: steps
+    description: Everything about Test Steps
+    externalDocs:
+      description: Find out more about test steps
+      url: 'http://swagger.io'
+  - name: tests
+    description: Everything about Tests
+    externalDocs:
+      description: Find out more about tests
+      url: 'http://swagger.io'
+  - name: organizations
+    description: Everything about Organizations
+    externalDocs:
+      description: Find out more about organizations
+      url: 'http://swagger.io'
+schemes:
+  - https
+paths:
+  /healthz:
+    get:
+      description: API Health Check
+      tags:
+        - health
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                default: 200
+              message:
+                type: integer
+                default: OK
+              data:
+                type: object
+                properties:
+                  is_healthy:
+                    type: boolean
+                    example: true
+                  uptime:
+                    type: integer
+                    format: float
+                    example: 1337.34
+                  version:
+                    type: string
+                    format: /\d\.\d\.\d/
+                    example: 2.10.3
+  /oauth/authorize:
+    get:
+      description: Authorization endpoint to authenticate the user and grant permission
+      tags:
+        - auth
+      responses:
+        200:
+          description: OK
+  /oauth/token:
+    post:
+      description: OAuth2 token route
+      tags:
+        - auth
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              grant_type:
+                type: string
+                example: code
+              client_id:
+                type: string
+                example: foo
+              client_secret:
+                type: string
+                example: bar
+              scope:
+                type: string
+                description: Space delimited scopes
+                example: "users tests"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Token'
+  /users:
+    get:
+      description: Get all users
+      summary: Capability to get all users that your role allows
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+    post:
+      description: Create a new user
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+  /users/me:
+    get:
+      description: Get my information
+      tags:
+        - users
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+              data:
+                $ref: '#/definitions/User'
+    put:
+      description: Update my information
+      tags:
+        - users
+      responses:
+        200:
+          description: Updated
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: Updated
+              data:
+                $ref: '#/definitions/User'
+    delete:
+      description: Delete myself
+      tags:
+        - users
+      responses:
+        204:
+          description: Deleted
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 204
+              message:
+                type: string
+                example: "Deleted"
+  /organizations:
+    get:
+      description: Get all organizations
+      tags:
+        - organizations
+      responses:
+        '200':
+          description: OK
+    post:
+      description: Create a new organization
+      tags:
+        - organizations
+      responses:
+        '200':
+          description: OK
+  /organizations/me:
+    get:
+      description: Get my organization
+      tags:
+        - organizations
+      responses:
+        '200':
+          description: OK
+    put:
+      description: Update my organization
+      tags:
+        - organizations
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: Delete my organization
+      tags:
+        - organizations
+      responses:
+        '200':
+          description: OK
+  /plans:
+    get:
+      description: Get all test plans
+      tags:
+        - plans
+      responses:
+        '200':
+          description: OK
+    post:
+      description: Create a new test plan
+      tags:
+        - plans
+      responses:
+        '200':
+          description: OK
+  /plans/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+    get:
+      tags:
+        - plans
+      description: Get a test plan
+      responses:
+        '200':
+          description: OK
+    post:
+      description: Create a new test plan
+      tags:
+        - plans
+      responses:
+        '200':
+          description: OK
+    put:
+      description: Update a test plan
+      tags:
+        - plans
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: Delete a test plan
+      tags:
+        - plans
+      responses:
+        '200':
+          description: OK
+  /steps:
+    get:
+      description: Get all test steps
+      tags:
+        - steps
+      responses:
+        '200':
+          description: OK
+    post:
+      description: Create a new test step
+      tags:
+        - steps
+      responses:
+        '200':
+          description: OK
+  /steps/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+    get:
+      description: Get a test step
+      tags:
+        - steps
+      responses:
+        '200':
+          description: OK
+    put:
+      description: Update a test step
+      tags:
+        - steps
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: Delete a test step
+      tags:
+        - steps
+      responses:
+        204:
+          description: OK
+  /tests:
+    get:
+      description: Get all tests
+      tags:
+        - tests
+      responses:
+        '200':
+          description: OK
+    post:
+      description: Create a new test
+      tags:
+        - tests
+      responses:
+        '200':
+          description: OK
+  /tests/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+    get:
+      description: Get a test
+      tags:
+        - tests
+      responses:
+        '200':
+          description: OK
+    put:
+      description: Update a test
+      tags:
+        - tests
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: Delete a test
+      tags:
+        - tests
+      responses:
+        '200':
+          description: OK
+
+securityDefinitions:
+  trusted_client_login:
+    type: oauth2
+    flow: password
+    tokenUrl: 'https://www.testr.io/api/oauth/token'
+    scopes:
+      users: User read and write operations
+      users:read: User read operations
+      users:write: User write operations
+      tests: Test read and write operations
+      tests:read: Test read operations
+      Tests:write: Test write operations
+definitions:
+  Token:
+    type: object
+    properties:
+      access_token:
+        type: string
+        example: 5739ef658b5a858f36fe56202d7b5e6ffb18b57569cfadcae2f47453549bbe10
+      refresh_token:
+        type: string
+        example: af4a54a5555411837505e20d1a8c77c1b0ba346b7bbd3fdbe97ac6abbb50728b
+      expires_in:
+        type: integer
+        example: 1200
+      token_type:
+        type: string
+        enum:
+          - Bearer
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      username:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+

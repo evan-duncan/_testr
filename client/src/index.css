@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700&subset=latin-ext');
+@import "btn.css";
+@import "input.css";
+
+html {
+  position: relative;
+  min-height: 100%;
+  max-width: 100%;
+}
+
+body {
+  margin: 0 0 115px 0; /* footer height needs to be applied */
+  padding: 0;
+  font-family: 'Work Sans', sans-serif;
+  min-width: 300px;
+}
+
+pre {
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+/* global link styles */
+a {
+    text-decoration: none;
+    color: #01579B;
+}
+
+a:link {}
+
+a:visited {
+    color: #673AB7;
+}
+
+a:focus,
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+}
+
+
