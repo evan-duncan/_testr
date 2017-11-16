@@ -1,6 +1,6 @@
 const passport = require('passport');
 const BearerStrategy = require('passport-http-bearer');
-const { User, Token, Scope } = require('../../api/models');
+const { Token, Scope } = require('../../api/models');
 
 passport.use(new BearerStrategy((async (token, done) => {
   try {

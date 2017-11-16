@@ -19,6 +19,13 @@ server.exchange(oauth2orize.exchange.password(async (client, username, password,
     if (!hasValidPassword) {
       return done(null, false);
     }
+
+    const token = await Token.create({ client, user, scope });
+    const refresh = await Token.create({
+      client, user, scope, type: 'refresh',
+    });
+    const expiresIn = differenceInSeconds(token.expires_at, token.created_at);
+    return done(null, token.value, refresh.value, { expires_in: expiresIn });
   } catch (err) {
     return done(err);
   }
@@ -28,44 +35,43 @@ server.exchange(oauth2orize.exchange.password(async (client, username, password,
 /**
  * Refresh token grant
  */
-server.exchange(oauth2orize.exchange.refreshToken(async function(client, refreshToken, scope, done) {
-    try {
-        const token = await Token
-            .query()
-            .eager('user')
-            .where('value', '=', refreshToken)
-            .andWhere('type', '=', 'refresh')
-            .first();
-        if (!token) {
-            return done(null, false);
-        }
-
-        if (token.expires_at && isPast(token.expires_at)) {
-            await Token.query().delete().where('value', '=', refreshToken);
-            return done(null, false);
-        }
-
-        const access = await Token.create({ client, user: token.user, scope });
-        const refresh = await Token.create({ client, user: token.user, scope, type: 'refresh' });
-        await Token.query().delete().where('value', '=', refreshToken);
-        return done(null, access.value, refresh.value, { expires_at: access.expires_at });
-    } catch (err) {
-        done(err);
+server.exchange(oauth2orize.exchange.refreshToken(async (client, refreshToken, scope, done) => {
+  try {
+    const token = await Token
+      .query()
+      .eager('user')
+      .where('value', '=', refreshToken)
+      .andWhere('type', '=', 'refresh')
+      .first();
+    if (!token) {
+      return done(null, false);
     }
+
+    if (token.expires_at && isPast(token.expires_at)) {
+      await Token.query().delete().where('value', '=', refreshToken);
+      return done(null, false);
+    }
+
+    const access = await Token.create({ client, user: token.user, scope });
+    const refresh = await Token.create({
+      client, user: token.user, scope, type: 'refresh',
+    });
+    await Token.query().delete().where('value', '=', refreshToken);
+    const expiresIn = differenceInSeconds(access.expires_at, refresh.created_at);
+    return done(null, access.value, refresh.value, { expires_in: expiresIn });
+  } catch (err) {
+    return done(err);
+  }
 }));
 
+server.serializeClient((client, done) => done(null, client.client_id));
 
-server.serializeClient((client, done) => {
-    return done(null, client.client_id);
-});
-
-server.deserializeClient((id, done) => {
-    Client.query()
-        .where('client_id', '=', id)
-        .first()
-        .then(client => done(null, client))
-        .catch(done);
-});
+server.deserializeClient((id, done) =>
+  Client.query()
+    .where('client_id', '=', id)
+    .first()
+    .then(client => done(null, client))
+    .catch(done));
 
 module.exports = server;
 
