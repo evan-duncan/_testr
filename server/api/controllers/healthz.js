@@ -14,6 +14,7 @@ module.exports = {
         const data = envelope(status, 'OK', {
           is_healthy: !!result.is_healthy,
           uptime: process.uptime(),
+          version: pkg.version,
         });
         res.status(status).json(data);
       })

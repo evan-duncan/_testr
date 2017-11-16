@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const handlebars = require('handlebars');
 const logger = require('./lib/logger');
 const defender = require('./lib/defender');
 const requestId = require('./lib/requestId');
@@ -12,6 +11,7 @@ const app = express();
 const api = require('./api');
 
 app.set('view engine', 'hbs');
+app.disable('x-powered-by');
 
 app.use(logger.middleware);
 app.use(defender);

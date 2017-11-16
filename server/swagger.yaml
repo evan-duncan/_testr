@@ -50,6 +50,7 @@ schemes:
   - https
 paths:
   /healthz:
+    description: health_check_url
     get:
       description: API Health Check
       tags:
@@ -81,6 +82,7 @@ paths:
                     format: /\d\.\d\.\d/
                     example: 2.10.3
   /oauth/authorize:
+    description: oauth2_authorization_url
     get:
       description: Authorization endpoint to authenticate the user and grant permission
       tags:
@@ -89,6 +91,7 @@ paths:
         200:
           description: OK
   /oauth/token:
+    description: oauth2_token_url
     post:
       description: OAuth2 token route
       tags:
@@ -119,6 +122,7 @@ paths:
           schema:
             $ref: '#/definitions/Token'
   /users:
+    description: users_url
     get:
       description: Get all users
       summary: Capability to get all users that your role allows
@@ -135,6 +139,7 @@ paths:
         '200':
           description: OK
   /users/me:
+    description: me_url
     get:
       description: Get my information
       tags:
@@ -186,6 +191,7 @@ paths:
                 type: string
                 example: "Deleted"
   /organizations:
+    description: organizations_url
     get:
       description: Get all organizations
       tags:
@@ -200,29 +206,8 @@ paths:
       responses:
         '200':
           description: OK
-  /organizations/me:
-    get:
-      description: Get my organization
-      tags:
-        - organizations
-      responses:
-        '200':
-          description: OK
-    put:
-      description: Update my organization
-      tags:
-        - organizations
-      responses:
-        '200':
-          description: OK
-    delete:
-      description: Delete my organization
-      tags:
-        - organizations
-      responses:
-        '200':
-          description: OK
   /plans:
+    description: plans_url
     get:
       description: Get all test plans
       tags:
@@ -238,6 +223,7 @@ paths:
         '200':
           description: OK
   /plans/{id}:
+    description: plan_url
     parameters:
       - name: id
         in: path
@@ -272,6 +258,7 @@ paths:
         '200':
           description: OK
   /steps:
+    description: steps_url
     get:
       description: Get all test steps
       tags:
@@ -287,6 +274,7 @@ paths:
         '200':
           description: OK
   /steps/{id}:
+    description: step_url
     parameters:
       - name: id
         in: path
@@ -314,6 +302,7 @@ paths:
         204:
           description: OK
   /tests:
+    description: tests_url
     get:
       description: Get all tests
       tags:
@@ -329,6 +318,7 @@ paths:
         '200':
           description: OK
   /tests/{id}:
+    description: test_url
     parameters:
       - name: id
         in: path

@@ -13,7 +13,7 @@ passport.use(new BasicStrategy((async (id, secret, done) => {
     if (await !client.hasValidSecret(secret)) return done(null, false);
     return done(null, client);
   } catch (err) {
-    done(err);
+    return done(err);
   }
 })));
 
