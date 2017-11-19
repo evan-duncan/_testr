@@ -4,6 +4,7 @@ const discovery = require('./discovery');
 const errors = require('./errors');
 const healthz = require('./healthz');
 const paymentPlans = require('./paymentPlans');
+const tests = require('./tests');
 const users = require('./users');
 
 module.exports = {
@@ -13,6 +14,7 @@ module.exports = {
   errors,
   healthz,
   paymentPlans,
+  tests,
   users,
 };
 
