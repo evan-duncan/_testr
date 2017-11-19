@@ -43,6 +43,11 @@ router.get('/clients', isAuthed, controllers.clients.index);
 router.post('/clients', isAuthed, controllers.clients.create);
 router.put('/clients/:id_or_name', isAuthed, controllers.clients.update);
 router.delete('/clients/:id_or_name', isAuthed, controllers.clients.destroy);
+router.get('/tests', isAuthed, controllers.tests.index);
+router.post('/tests', isAuthed, controllers.tests.create);
+router.get('/tests/:id', isAuthed, controllers.tests.show);
+router.put('/tests/:id', isAuthed, controllers.tests.update);
+router.delete('/tests/:id', isAuthed, controllers.tests.destroy);
 
 router.use(controllers.errors.internalServerError);
 router.use(controllers.errors.notFound);

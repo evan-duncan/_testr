@@ -21,7 +21,16 @@ class Test extends Model {
 
   static get relationshipMappings() {
     const Step = require('./step');
+    const Owner = require('./owner');
     return {
+      owner: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Owner,
+        join: {
+          from: 'tests.owner_id',
+          to: 'owners.id',
+        },
+      },
       steps: {
         relation: Model.ManyToManyRelation,
         modelClass: Step,
@@ -31,7 +40,7 @@ class Test extends Model {
             from: 'test_steps.test_id',
             to: 'test_steps.step_id',
           },
-          to: 'steaps.id',
+          to: 'steps.id',
         },
       },
     };
