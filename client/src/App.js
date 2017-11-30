@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import { ConnectedRouter } from 'react-router-redux';
 import { history } from './store';
@@ -12,17 +13,20 @@ class App extends Component {
     return (
       <ConnectedRouter history={history}>
         <div className="App">
-          <Header />
+          {this.props.hasHeader && <Header />}
           <section className="content">
             <Grid fluid>
               <Routes />
             </Grid>
           </section>
-          <Footer />
+          {this.props.hasFooter && <Footer />}
         </div>
       </ConnectedRouter>
     );
   }
 }
 
-export default App;
+export default connect(state => ({
+  hasHeader: state.app.has_header,
+  hasFooter: state.app.has_footer,
+}))(App);

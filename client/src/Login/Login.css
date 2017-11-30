@@ -1,12 +1,89 @@
+.LoginForm {
+    text-align: center;
+    max-width: 26rem;
+    margin: auto;
+}
+
+.LoginForm--wrapper {
+    position: absolute;
+    top: 10%;
+}
+
+.LoginForm--banner {
+    margin-bottom: 2rem;
+}
+
+.LoginForm--hdg {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.LoginForm--subHdg {
+    font-weight: normal;
+    font-size: 1rem;
+    margin: auto;
+}
+
 .LoginForm--inputGroup {
     margin: 10px auto;
+    text-align: left;
 }
 
 .LoginForm--inputGroupInput {
     width: 100%;
     height: 2rem;
     font-size: 1.25rem;
+    padding: 0.2rem 0.6rem;
 }
 
+.LoginForm--inputGroupLabel {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
 
+.LoginForm--forgotPassword {
+    float: right;
+    margin-right: -1.3rem;
+}
 
+.LoginForm--submit {
+    min-width: 105%;
+    margin-top: 1.25rem;
+}
+
+.LoginForm--agreement {
+
+}
+
+.LoginForm--signUp {
+    margin-top: 1.25rem;
+}
+
+.CodeOn {
+    background-position-x: 0%;
+    background-position-y: 75%;
+    background-repeat: no-repeat;
+    height: 100%;
+    margin-right: -2rem;
+    color: #fff;
+    position: relative;
+}
+
+.CodeOn--wrapper {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+}
+
+.CodeOn--hdg {
+    margin: auto;
+}
+
+.CodeOn--list {
+    padding-left: 1.5rem;
+}
+
+.CodeOn--listItem {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}

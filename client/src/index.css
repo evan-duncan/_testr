@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  margin: 0 0 115px 0; /* footer height needs to be applied */
+  margin: 0 0 0 0; /* footer height needs to be applied */
   padding: 0;
   font-family: 'Work Sans', sans-serif;
   min-width: 300px;
@@ -26,7 +26,7 @@ pre {
 /* global link styles */
 a {
     text-decoration: none;
-    color: #01579B;
+    color: #0094ff;
 }
 
 a:link {}
@@ -43,4 +43,6 @@ a:hover {
 a:active {
 }
 
-
+.o-full-vh {
+    height: 100vh;
+}
