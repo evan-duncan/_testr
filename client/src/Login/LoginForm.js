@@ -71,4 +71,3 @@ class LoginForm extends Component {
 }
 
 export default connect(state => ({ user: state.user }))(LoginForm);
-

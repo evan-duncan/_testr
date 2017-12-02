@@ -5,6 +5,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { history } from './store';
 import { Grid } from 'react-flexbox-grid';
 import Routes from './Routes';
+import Notifications from './components/Notifications';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -20,6 +21,7 @@ class App extends Component {
             </Grid>
           </section>
           {this.props.hasFooter && <Footer />}
+          <Notifications />
         </div>
       </ConnectedRouter>
     );
