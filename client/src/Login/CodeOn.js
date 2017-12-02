@@ -1,14 +1,13 @@
 import React from 'react'; 
-import codeOnXL from '../images/code-on-2000px.jpg';
-import codeOnMd from '../images/code-on-800px.jpg';
-import codeOnSm from '../images/code-on-400px.jpg';
+import codeOn from './code-on.jpg';
 import marker from './marker.svg';
+import UnsplashCredit from '../components/UnsplashCredit';
 
 export default function CodeOn() {
     return (
         <div className="CodeOn" style={{
-            background: `linear-gradient(0deg,rgba(0,100,255,0.3),rgba(0,100,255,0.3)),url(${codeOnXL})`,
-            backgroundSize: 'auto 110%',
+            background: `url(${codeOn}) no-repeat`,
+            backgroundSize: 'auto 106%',
         }}>
             <div className="CodeOn--wrapper">
                 <h1 className="CodeOn--hdg">What can Testr do for you?</h1>
@@ -19,6 +18,11 @@ export default function CodeOn() {
                     <li className="CodeOn--listItem">Selling Point for Testr 004</li>
                     <li className="CodeOn--listItem">Selling Point for Testr 005</li>
                 </ul>
+            </div>
+            <div className="CodeOn--credit">
+                <UnsplashCredit 
+                    name="Blake Connelly" 
+                    hyperlink="https://unsplash.com/@blakeconnally?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" />
             </div>
         </div>
     );

@@ -1,0 +1,9 @@
+.Nav {
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.10);
+}
+
+.Nav--underline {
+    background: #0094FF;
+    background-image: linear-gradient(90deg, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0.12) 100%);
+}

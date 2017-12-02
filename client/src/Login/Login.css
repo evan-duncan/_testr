@@ -13,19 +13,26 @@
     margin-bottom: 2rem;
 }
 
+.LoginForm--logo {
+    height: 10rem;
+    margin-bottom: 1.25rem;
+}
+
 .LoginForm--hdg {
     font-size: 1.2rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.313rem;
 }
 
 .LoginForm--subHdg {
     font-weight: normal;
     font-size: 1rem;
     margin: auto;
+    margin-bottom: 1.875rem;
 }
 
 .LoginForm--inputGroup {
     margin: 10px auto;
+    margin-bottom: 0.938rem;
     text-align: left;
 }
 
@@ -48,7 +55,7 @@
 
 .LoginForm--submit {
     min-width: 105%;
-    margin-top: 1.25rem;
+    margin-top: 1rem;
 }
 
 .LoginForm--agreement {
@@ -60,9 +67,6 @@
 }
 
 .CodeOn {
-    background-position-x: 0%;
-    background-position-y: 75%;
-    background-repeat: no-repeat;
     height: 100%;
     margin-right: -2rem;
     color: #fff;
@@ -72,11 +76,12 @@
 .CodeOn--wrapper {
     position: absolute;
     top: 30%;
-    left: 10%;
+    left: 12.5%;
 }
 
 .CodeOn--hdg {
     margin: auto;
+    margin-bottom: 1.875rem;
 }
 
 .CodeOn--list {
@@ -85,5 +90,11 @@
 
 .CodeOn--listItem {
     font-size: 1.1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.CodeOn--credit {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
 }
