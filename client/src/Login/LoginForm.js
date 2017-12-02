@@ -38,7 +38,7 @@ class LoginForm extends Component {
             <div className="LoginForm">
                 <div className="LoginForm--wrapper">
                     <div className="LoginForm--banner">
-                        <div style={{ height: '10rem' }}><Logo /></div>
+                        <div className="LoginForm--logo"><Logo /></div>
                         <h1 className="LoginForm--hdg">Log into Testr</h1>
                         <h2 className="LoginForm--subHdg">Glad you're back! We missed you.</h2>
                     </div>

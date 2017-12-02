@@ -3,8 +3,10 @@
     border: 1px solid transparent;
     border-radius: 0.2em;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1em;
+    letter-spacing: 0.7px;
     cursor: pointer;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.12);
 }
 
 .btn-primary {
@@ -17,12 +19,12 @@
 }
 
 .btn-secondary {
-    background-color: #ab47bc;
-    color: #fff;
+    background-color: #fff;
+    color: #0094FF;
 }
 
 .btn-secondary:active {
-    background-color: #8e24aa;
+    background-color: #aaa;
 }
 
 .btn-success {
@@ -60,4 +62,3 @@
 .btn-info:active {
     background-color: #000066;
 }
-
