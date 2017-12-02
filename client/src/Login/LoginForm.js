@@ -1,8 +1,8 @@
-import { addFooter } from '../actions/app';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { processLogin } from '../actions/user';
+import { addFooter } from '../actions/app';
 import Logo from '../components/Logo';
 
 class LoginForm extends Component {
@@ -51,15 +51,18 @@ class LoginForm extends Component {
                         </div>
                         <div className="LoginForm--inputGroup">
                             <label>
-                                <span className="LoginForm--inputGroupLabel">Password</span><span className="LoginForm--forgotPassword"><a>Forgot password?</a></span>
+                                <span className="LoginForm--inputGroupLabel">Password</span>
+                                <span className="LoginForm--forgotPassword">
+                                    <Link to="/forgot-password">Forgot password?</Link>
+                                </span>
                                 <input className="LoginForm--inputGroupInput" type="password" placeholder="Password" name="password" onChange={this.handleChange} />
                             </label>
                         </div>
                         <div className="LoginForm--inputGroup">
                             <input className="btn btn-primary LoginForm--submit" type="submit" value="Log in" />
                         </div>
-                        <div className="LoginForm--agreement">By logging in you agree to our <a>Terms of Service</a> and <a>Privacy Policy</a>.</div>
-                        <div className="LoginForm--signUp">Don't have an account? <a>Sign Up</a>.</div>
+                        <div className="LoginForm--agreement">By logging in you agree to our <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link>.</div>
+                        <div className="LoginForm--signUp">Don't have an account? <Link to="/register">Sign Up</Link>.</div>
                     </form>
                 </div>
             </div>

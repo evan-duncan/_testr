@@ -1,7 +1,8 @@
 import React from 'react'; 
+import './CodeOn.css';
 import codeOn from './code-on.jpg';
 import marker from './marker.svg';
-import UnsplashCredit from '../components/UnsplashCredit';
+import UnsplashCredit from '../UnsplashCredit';
 
 export default function CodeOn() {
     return (
