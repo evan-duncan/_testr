@@ -3,7 +3,7 @@ import { Row, Col } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
 import './Login.css';
 import LoginForm from './LoginForm';
-import CodeOn from './CodeOn';
+import CodeOn from '../components/CodeOn';
 import {
     addFooter,
     addHeader,

@@ -65,36 +65,3 @@
 .LoginForm--signUp {
     margin-top: 1.25rem;
 }
-
-.CodeOn {
-    height: 100%;
-    margin-right: -2rem;
-    color: #fff;
-    position: relative;
-}
-
-.CodeOn--wrapper {
-    position: absolute;
-    top: 30%;
-    left: 12.5%;
-}
-
-.CodeOn--hdg {
-    margin: auto;
-    margin-bottom: 1.875rem;
-}
-
-.CodeOn--list {
-    padding-left: 1.5rem;
-}
-
-.CodeOn--listItem {
-    font-size: 1.1rem;
-    margin-bottom: 1.25rem;
-}
-
-.CodeOn--credit {
-    position: absolute;
-    bottom: 1em;
-    right: 1em;
-}

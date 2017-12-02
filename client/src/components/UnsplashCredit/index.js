@@ -21,12 +21,6 @@ export default function UnsplashCredit({ name, hyperlink }) {
             rel="noopener noreferrer" 
             title={`Download free do whatever you want high-resolution photos from ${name}`}>
             <UnsplashCamera />
-            <span style={{
-                display: 'inline-block',
-                padding: '2px 3px',
-            }}>
-                {name}
-            </span>
         </a>
     );
 }

@@ -1,0 +1,67 @@
+.RegisterForm {
+    text-align: center;
+    max-width: 26rem;
+    margin: auto;
+}
+
+.RegisterForm--wrapper {
+    position: absolute;
+    top: 10%;
+}
+
+.RegisterForm--banner {
+    margin-bottom: 2rem;
+}
+
+.RegisterForm--logo {
+    height: 10rem;
+    margin-bottom: 1.25rem;
+}
+
+.RegisterForm--hdg {
+    font-size: 1.2rem;
+    margin-bottom: 0.313rem;
+}
+
+.RegisterForm--subHdg {
+    font-weight: normal;
+    font-size: 1rem;
+    margin: auto;
+    margin-bottom: 1.875rem;
+}
+
+.RegisterForm--inputGroup {
+    margin: 10px auto;
+    margin-bottom: 0.938rem;
+    text-align: left;
+}
+
+.RegisterForm--inputGroupInput {
+    width: 100%;
+    height: 2rem;
+    font-size: 1.25rem;
+    padding: 0.2rem 0.6rem;
+}
+
+.RegisterForm--inputGroupLabel {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.RegisterForm--submit {
+    min-width: 105%;
+    margin-top: 1rem;
+}
+
+.RegisterForm--agreement {
+
+}
+
+.RegisterForm--login {
+    margin-top: 1.25rem;
+}
+
+.RegisterForm--passwordRules {
+    color: #767676;
+    padding-left: 0.6rem;
+}
