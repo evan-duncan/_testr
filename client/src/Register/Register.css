@@ -65,3 +65,9 @@
     color: #767676;
     padding-left: 0.6rem;
 }
+
+@media screen and (max-width: 75em) {
+    .RegisterForm--codeOn {
+        display: none;
+    }
+}

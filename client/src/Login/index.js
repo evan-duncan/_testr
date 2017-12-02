@@ -27,10 +27,10 @@ class Login extends Component {
     render() {
         return (
             <Row className="o-full-vh">
-                <Col xs={12} sm={12} md={8}>
+                <Col xs={12} lg={8}>
                     <LoginForm />
                 </Col>
-                <Col xs={12} sm={12} md={4}>
+                <Col xs={12} lg={4} className="LoginForm--codeOn">
                     <CodeOn />
                 </Col>
             </Row>

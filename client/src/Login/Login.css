@@ -65,3 +65,9 @@
 .LoginForm--signUp {
     margin-top: 1.25rem;
 }
+
+@media screen and (max-width: 75em) {
+    .LoginForm--codeOn {
+        display: none;
+    }
+}
