@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router';
 import PrivateRoute from './components/PrivateRoute';
 import Home from './Home';
@@ -9,13 +8,11 @@ import Register from './Register';
 import License from './License';
 import About from './About';
 
-class Routes extends Component {
+export default class Routes extends Component {
     render() {
-        const isAuthenticated = !!this.props.user.token;
-        const rootComponent = isAuthenticated ? Home : Login;
         return (
           <Switch>
-            <Route exact path="/" component={rootComponent} />
+            <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/license" component={License} />
@@ -25,6 +22,3 @@ class Routes extends Component {
         );
     }
 }
-
-export default connect(state => state)(Routes);
-

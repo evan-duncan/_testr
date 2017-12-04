@@ -15,7 +15,6 @@ export class Notifications extends Component {
                 padding: '15px 12px',
               },
               success: { // Applied only to the success notification item
-                color: 'red',
                 backgroundColor,
               },
               info: {
@@ -42,4 +41,6 @@ export class Notifications extends Component {
     }
 }
 
-export default connect(state => ({ notifications: state.notifications }))(Notifications);
+export default connect(state => ({ 
+  notifications: state.notifications,
+}))(Notifications);

@@ -24,3 +24,5 @@ export function success(message, title="") {
 export function warning(message, title="") {
     return action.warning(build({ message, title }));
 }
+
+export const removeAll = action.removeAll;

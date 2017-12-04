@@ -16,12 +16,11 @@ class User extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['username', 'password'],
+      required: ['email', 'password'],
       properties: {
         id: { type: 'integer' },
-        username: { type: 'string', minLength: 2, maxLength: 100 },
         password: { type: 'string', minLength: 6, maxLength: 60 },
-        email: { type: ['string', 'null'], maxLength: 255 },
+        email: { type: ['string'], maxLength: 255 },
         first_name: { type: ['string', 'null'], maxLength: 100 },
         middle_name: { type: ['string', 'null'], maxLength: 100 },
         last_name: { type: ['string', 'null'], maxLength: 100 },
@@ -70,13 +69,16 @@ class User extends Model {
   }
 
   static confirmPasswordAndCreate({
-    username, password, password_confirm, email,
+    name, password, email,
   }) {
-    if (password !== password_confirm) { // eslint-disable-line camelcase
-      return Promise.reject(new User.ValidationError(User.PASSWORD_CONFIRMATION_ERROR));
+    const parts = name.split(' ');
+    let first_name, middle_name, last_name;
+    if (parts.length > 2) {
+      [first_name, middle_name, last_name] = parts;
+    } else {
+      [first_name, last_name] = parts;
     }
-
-    return User.query().insert({ username, password, email });
+    return User.query().insert({ password, email, first_name, middle_name, last_name });
   }
 
   async $beforeInsert() {

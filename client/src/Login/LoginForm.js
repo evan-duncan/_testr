@@ -10,9 +10,8 @@ class LoginForm extends Component {
         super(props);
 
         this.state = {
-            username: '',
+            email: this.props.email || '',
             password: '',
-            remember_me: false,
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,7 +45,7 @@ class LoginForm extends Component {
                         <div className="LoginForm--inputGroup">
                             <label>
                                 <span className="LoginForm--inputGroupLabel">Email</span>
-                                <input className="LoginForm--inputGroupInput" type="text" placeholder="Email" name="username" onChange={this.handleChange} />
+                                <input className="LoginForm--inputGroupInput" type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.handleChange} />
                             </label>
                         </div>
                         <div className="LoginForm--inputGroup">
@@ -55,7 +54,7 @@ class LoginForm extends Component {
                                 <span className="LoginForm--forgotPassword">
                                     <Link to="/forgot-password">Forgot password?</Link>
                                 </span>
-                                <input className="LoginForm--inputGroupInput" type="password" placeholder="Password" name="password" onChange={this.handleChange} />
+                                <input className="LoginForm--inputGroupInput" type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange} />
                             </label>
                         </div>
                         <div className="LoginForm--inputGroup">
@@ -70,4 +69,4 @@ class LoginForm extends Component {
     }
 }
 
-export default connect(state => ({ user: state.user }))(LoginForm);
+export default connect(state => state.user)(LoginForm);
