@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700');
 @import "btn.css";
 @import "input.css";
+@import "colors.css";
 
 html {
   position: relative;

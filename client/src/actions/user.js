@@ -1,4 +1,4 @@
-
+import { success, error } from './notifications';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -18,8 +18,18 @@ export function processLogin({ username, password, remember_me }) {
 export function processRegistration(creds) {
     return dispatch => {
         return postRegistration(creds).then(
-            user => dispatch(registrationSuccess(user)),
-            err  => dispatch(registrationFailure(err))
+            user => {
+                dispatch(registrationSuccess(user));
+                dispatch(success('Successfully registered'));
+            },
+            err  => {
+                dispatch(registrationFailure(err))
+                if (typeof err.data === 'object') {
+                    for (const [key, value] of Object.entries(err.data)) {
+                        dispatch(error(value[0].message, `${key} validation error`));
+                    }
+                }
+            },
         );
     };
 }
@@ -49,25 +59,31 @@ function loginFailure(err) {
     };
 }
 
-function postRegistration({ username, password, password_confirm, email }) {
+function postRegistration({ name, password, email }) {
     return fetch('/api/users', {
         method: 'POST',
         headers: new Headers({
             'Content-Type': 'application/json',
         }),
         body: JSON.stringify({
-            username,
+            name,
             password,
-            password_confirm,
             email,
         }),
+    })
+    .then(res => res.json())
+    .then(json => {
+        if (json.status > 299) {
+            return Promise.reject(json);
+        }
+        return json;
     });
 }
 
 function registrationSuccess(user) {
     return {
         type: REGISTRATION_SUCCESS,
-        user,
+        user: user.data,
     };
 }
 

@@ -10,8 +10,15 @@ module.exports = {
       return next();
     }
     const status = err.statusCode || HttpStatus.INTERNAL_SERVER_ERROR;
-    const msg = err.sqlMessage || err.message || 'There was a problem.';
-    return res.status(status).json(envelope(status, msg));
+    let msg = err.sqlMessage || err.message || 'There was a problem.';
+    let data;
+
+    try {
+      data = JSON.parse(msg);
+      msg = 'An error occurred';
+    } catch (err) {}
+
+    return res.status(status).json(envelope(status, msg, data));
   },
   /**
      * If nothing else was hit, 404

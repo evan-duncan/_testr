@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import './Register.css';
 import RegisterForm from './RegisterForm';
 import CodeOn from '../components/CodeOn';
@@ -38,4 +39,4 @@ class Register extends Component {
     }
 }
 
-export default connect(state => state)(Register);
+export default withRouter(connect(state => state)(Register));
