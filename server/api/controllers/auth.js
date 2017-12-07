@@ -43,5 +43,10 @@ module.exports = {
     oauth.token(),
     oauth.errorHandler(),
   ],
+  local: [
+    auth.authenticate('local', { session: false }),
+    oauth.token(),
+    oauth.errorHandler(),
+  ],
 };
 
