@@ -4,6 +4,7 @@ import {
     LOGIN_FAILURE,
     REGISTRATION_FAILURE,
     REGISTRATION_SUCCESS,
+    DESTROY_SESSION,
 } from '../actions/user';
 
 const initialState = {
@@ -33,6 +34,8 @@ export default (state=initialState, action) => {
             return { ...state, ...action.user};
         case REGISTRATION_FAILURE:
             return { ...state, validationErrors: { ...action.error.data }};
+        case DESTROY_SESSION:
+            return initialState;
         default:
             return state;
     }
