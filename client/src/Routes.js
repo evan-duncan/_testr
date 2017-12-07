@@ -5,6 +5,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Home from './Home';
 import NotFound from './NotFound';
 import Login from './Login';
+import Logout from './Logout';
 import Register from './Register';
 import License from './License';
 import About from './About';
@@ -16,6 +17,7 @@ class Routes extends Component {
       <Switch>
         <PrivateRoute exact path="/" component={Home} isAuthenticated={isAuthenticated} />
         <Route path="/login" component={Login} />
+        <Route path="/logout" component={Logout} />
         <Route path="/register" component={Register} />
         <Route path="/license" component={License} />
         <Route path="/about" component={About} />
