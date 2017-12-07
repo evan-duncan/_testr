@@ -10,7 +10,11 @@ const { Client, Token, User } = require('../api/models');
  */
 server.exchange(oauth2orize.exchange.password(async (client, username, password, scope, done) => {
   try {
-    const user = await User.query().where('username', '=', username).first();
+    if (!client.is_trusted) {
+      return done(null, false);
+    }
+
+    const user = await User.query().where('email', '=', username).first();
     if (!user) {
       return done(null, false);
     }

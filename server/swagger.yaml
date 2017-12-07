@@ -81,6 +81,26 @@ paths:
                     type: string
                     format: /\d\.\d\.\d/
                     example: 2.10.3
+  /auth/login:
+    description: basic_authentication_url
+    post:
+      description: Basic Authentication route to identify the user an return a Bearer Token
+      tags:
+        - auth
+      parameters:
+        - name: credentials
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+                format: password
+      responses:
+        201: Created
   /oauth/authorize:
     description: oauth2_authorization_url
     get:
