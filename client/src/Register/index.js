@@ -19,7 +19,7 @@ class Register extends Component {
         dispatch(removeFooter());
     }
 
-    componentDidUnmount() {
+    componentWillUnmount() {
         const { dispatch } = this.props;
         dispatch(addHeader());
         dispatch(addFooter());

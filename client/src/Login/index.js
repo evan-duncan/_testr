@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import './Login.css';
 import LoginForm from './LoginForm';
 import CodeOn from '../components/CodeOn';
@@ -19,14 +19,17 @@ class Login extends Component {
         dispatch(removeFooter());
     }
 
-    componentDidUnmount() {
+    componentWillUnmount() {
         const { dispatch } = this.props;
         dispatch(addHeader());
         dispatch(addFooter());
     }
 
     render() {
-        return (
+        const isAuthenticated = !!this.props.access_token;
+        return isAuthenticated 
+            ? <Redirect to={{ pathname: '/', from: '/login' }} />
+            : (
             <Row className="o-full-vh">
                 <Col xs={12} lg={8}>
                     <LoginForm />
@@ -39,4 +42,4 @@ class Login extends Component {
     }
 }
 
-export default withRouter(connect(state => {})(Login));
+export default withRouter(connect(state => state.user.auth)(Login));
