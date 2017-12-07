@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, withRouter } from 'react-router';
+import { connect } from 'react-redux';
 import PrivateRoute from './components/PrivateRoute';
 import Home from './Home';
 import NotFound from './NotFound';
@@ -8,17 +9,20 @@ import Register from './Register';
 import License from './License';
 import About from './About';
 
-export default class Routes extends Component {
-    render() {
-        return (
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/license" component={License} />
-            <Route path="/about" component={About} />
-            <Route component={NotFound} />
-          </Switch>
-        );
-    }
+class Routes extends Component {
+  render() {
+    const isAuthenticated = !!this.props.auth.access_token;
+    return (
+      <Switch>
+        <PrivateRoute exact path="/" component={Home} isAuthenticated={isAuthenticated} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/license" component={License} />
+        <Route path="/about" component={About} />
+        <Route component={NotFound} />
+      </Switch>
+    );
+  }
 }
+
+export default withRouter(connect(state => state.user)(Routes));
