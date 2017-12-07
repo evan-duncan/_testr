@@ -8,7 +8,7 @@ export default function CodeOn() {
     return (
         <div className="CodeOn" style={{
             background: `url(${codeOn}) no-repeat`,
-            backgroundSize: '100%',
+            backgroundSize: 'cover',
         }}>
             <div className="CodeOn--wrapper">
                 <h1 className="CodeOn--hdg">What can Testr do for you?</h1>
