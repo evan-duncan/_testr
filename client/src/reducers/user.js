@@ -12,8 +12,12 @@ const initialState = {
     first_name: null,
     middle_name: null,
     last_name: null,
-    date_of_birth: null,
-    token: null,
+    auth: {
+        token_type: null,
+        access_token: null,
+        refresh_token: null,
+        expires_in: null,
+    },
     validationErrors: {},
 };
 
@@ -22,7 +26,7 @@ export default (state=initialState, action) => {
         case LOGIN_REQUEST:
             return state;
         case LOGIN_SUCCESS:
-            return state;
+            return { ...state, ...action.user };
         case LOGIN_FAILURE:
             return state;
         case REGISTRATION_SUCCESS:

@@ -6,10 +6,10 @@ export const REGISTRATION_REQUEST = 'REGISTRATION_REQUEST';
 export const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS';
 export const REGISTRATION_FAILURE = 'REGISTRATION_FAILURE';
 
-export function processLogin({ username, password, remember_me }) {
+export function processLogin({ email, password }) {
     return dispatch => {
-        return postLogin({ username, password, remember_me }).then(
-            user => dispatch(loginSuccess(user)),
+        return postLogin({ email, password }).then(
+            token => dispatch(loginSuccess(token)),
             err  => dispatch(loginFailure(err))
         );
     };
@@ -34,15 +34,30 @@ export function processRegistration(creds) {
     };
 }
 
-function postLogin({ username, password, remember_me }) {
-    return fetch('/api/oauth/token', {
+async function postLogin({ email, password }) {
+    let response = await fetch('/api/auth/login', {
         method: 'POST',
-        body: {
-            username,
-            password,
-            remember_me,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
         },
+        body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
     });
+
+    const token = await response.json();
+
+    response = await fetch('/api/users/me', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token.access_token}`
+        }
+    });
+
+    const user = await response.json();
+    return {
+        ...user.data,
+        auth: { ...token },
+    };
 }
 
 function loginSuccess(user) {
