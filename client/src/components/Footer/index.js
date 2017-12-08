@@ -22,19 +22,18 @@ export default class Footer extends Component {
 
     render() {
         return (
-            <footer className="Footer--body">
-                <div className="Footer--copyright">&copy;{this.copyrightYear}, Evan Duncan</div>
-                <ul className="Footer--linksList">
-                    <li className="Footer--linksListItem">
-                        <Link to="/about">About</Link>
-                    </li>
-                    <li className="Footer--linksListItem">
-                        <Link to="/license">License</Link>
-                    </li>
-                    <li className="Footer--linksListItem">
-                        <a href="https://bitbucket.org/evanduncan/get_help">Code</a>
-                    </li>
-                </ul>
+            <footer className="Footer">
+                <div>
+                    <div className="Footer--copyright">&copy;{this.copyrightYear} Testr</div>
+                    <div className="Footer--terms">
+                        <Link to={{ pathname: "/terms", from: window.location.pathname }}>Terms</Link>
+                    </div>
+                </div>
+                <div className="Footer--links">
+                    <div>
+                        Testr is licensed under <Link to={{ pathname: "/license", from: window.location.pathname }}>GPLv3</Link>
+                    </div>
+                </div>
             </footer>
         );
     }

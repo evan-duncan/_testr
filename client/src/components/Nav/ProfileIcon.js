@@ -19,9 +19,10 @@ class ProfileIcon extends Component {
     }
 
     render() {
+        const letter = typeof this.props.name === 'string' ? this.props.name.slice(0, 1) : '';
         return (
             <div className="ProfileIcon" onClick={this.onClickHandler}>
-                <span className="ProfileIcon--letter">{this.props.name[0]}</span>
+                <span className="ProfileIcon--letter">{letter}</span>
                 <Dropdown isOpen={this.state.isOpen}>
                     <Link to={{ pathname: "/logout", from: window.location.pathname }}>Logout</Link>
                 </Dropdown>
