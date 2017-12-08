@@ -11,9 +11,10 @@ import Footer from './components/Footer';
 
 class App extends Component {
   render() {
+    const margin = this.props.hasFooter ? '0 0 5rem 0' : '0 0 0 0';
     return (
       <ConnectedRouter history={history}>
-        <div className="App">
+        <div className="App" style={{ margin }}>
           {this.props.hasHeader && <Nav />}
           <section className="content">
             <Grid fluid>
