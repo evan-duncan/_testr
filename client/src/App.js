@@ -6,7 +6,7 @@ import { history } from './store';
 import { Grid } from 'react-flexbox-grid';
 import Routes from './Routes';
 import Notifications from './components/Notifications';
-import Header from './components/Header';
+import Nav from './components/Nav';
 import Footer from './components/Footer';
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <ConnectedRouter history={history}>
         <div className="App">
-          {this.props.hasHeader && <Header />}
+          {this.props.hasHeader && <Nav />}
           <section className="content">
             <Grid fluid>
               <Routes />
