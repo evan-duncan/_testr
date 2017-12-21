@@ -10,6 +10,7 @@ class Owner extends Model {
     const Step = require('./step');
     const Plan = require('./plan');
     const Webhook = require('./webhook');
+    const Project = require('./project');
     return {
       tests: {
         relation: Model.HasManyRelation,
@@ -43,6 +44,14 @@ class Owner extends Model {
           to: 'webhooks.owner_id',
         },
       },
+      projects: {
+        relation: Model.HasManyRelation,
+        modelClass: Project,
+        join: {
+          from: 'owners.id',
+          to: 'projects.owner_id',
+        }
+      }
     };
   }
 }

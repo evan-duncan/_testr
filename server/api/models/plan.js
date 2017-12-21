@@ -27,7 +27,7 @@ class Plan extends Model {
         relation: Model.BelongsToOneRelation,
         modelClass: User,
         join: {
-          from: 'plans.creted_by_id',
+          from: 'plans.created_by_id',
           to: 'users.id',
         },
       },
