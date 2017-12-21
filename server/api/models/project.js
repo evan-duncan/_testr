@@ -30,4 +30,16 @@ class Project extends Model {
             },
         };
     }
+
+    static async create({ name, user }) {
+        const owner_id = user.id; // TODO: this needs to account for orgs
+        const project = await Project.query().insert({ name });
+        await project
+            .$relatedQuery('owner')
+            .insert({ user_id: owner_id });
+        
+        return project;
+    }
 }
+
+module.exports = Project;
