@@ -1,45 +1,11 @@
 const express = require('express');
 
 const router = express.Router();
-const cookies = require('cookie-parser');
 const auth = require('./auth');
-const session = require('express-session');
-const RedisStore = require('connect-redis')(session);
 
 const isAuthed = auth.authenticate('bearer', { session: false });
 const controllers = require('./controllers');
 
 router.use(auth.initialize());
-
-router.get('/', controllers.discovery.index);
-router.get('/healthz', controllers.healthz.index);
-router.post('/auth/login', controllers.auth.local);
-router.post('/oauth/token', controllers.auth.token);
-router.get('/oauth/authorize', controllers.auth.authorize);
-router.post('/oauth/authorize/decision', controllers.auth.decision);
-router.get('/oauth/login', controllers.auth.login);
-router.post('/oauth/login', auth.authenticate('local', { successReturnToOrRedirect: '/api/oauth/authorize', failureRedirect: '/api/oauth/login' }));
-
-router.post('/users', controllers.users.create);
-router.get('/payment_plans', controllers.paymentPlans.index);
-router.get('/payment_plans/:id', controllers.paymentPlans.show);
-
-/**
- * All routes that need to be behind auth
- */
-router.get('/users', isAuthed, controllers.users.index);
-router.get('/users/me', isAuthed, controllers.users.show);
-router.get('/clients', isAuthed, controllers.clients.index);
-router.post('/clients', isAuthed, controllers.clients.create);
-router.put('/clients/:id_or_name', isAuthed, controllers.clients.update);
-router.delete('/clients/:id_or_name', isAuthed, controllers.clients.destroy);
-router.get('/tests', isAuthed, controllers.tests.index);
-router.post('/tests', isAuthed, controllers.tests.create);
-router.get('/tests/:id', isAuthed, controllers.tests.show);
-router.put('/tests/:id', isAuthed, controllers.tests.update);
-router.delete('/tests/:id', isAuthed, controllers.tests.destroy);
-
-router.use(controllers.errors.internalServerError);
-router.use(controllers.errors.notFound);
+Object.values(controllers).forEach(controller => controller(router));
 module.exports = router;
-
