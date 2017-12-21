@@ -11,10 +11,10 @@ module.exports = {
   auth,
   clients,
   discovery,
-  errors,
   healthz,
   paymentPlans,
   tests,
   users,
+  errors, // ALWAYS LAST
 };
 
