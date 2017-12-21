@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-flexbox-grid';
+import SubHeading from '../components/Nav/SubHeading';
 
 export default class License extends Component {
     get text() {
         return (
             <div style={{ lineHeight: 1.2 }}>
-                <h3 style={{textAlign: 'center'}}>GNU GENERAL PUBLIC LICENSE</h3>
                 <p style={{textAlign: 'center'}}>Version 3, 29 June 2007</p>
 
                 <p>Copyright &copy; 2007 Free Software Foundation, Inc.
@@ -696,6 +696,7 @@ export default class License extends Component {
     render() {
         return (
             <div className="License--body">
+                <SubHeading>GNU GENERAL PUBLIC LICENSE</SubHeading>
                 <Row>
                     <Col xs={6} xsOffset={3}>{this.text}</Col>
                 </Row>

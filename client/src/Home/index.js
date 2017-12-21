@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import './Home.css';
+import SubHeading from '../components/Nav/SubHeading';
 
 class Home extends Component {
     render() {
         return (
-            <h1>Home</h1>
+            <div className="Home" />
         );
     }
 }
