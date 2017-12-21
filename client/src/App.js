@@ -15,7 +15,12 @@ class App extends Component {
     return (
       <ConnectedRouter history={history}>
         <div className="App" style={{ margin }}>
-          {this.props.hasHeader && <Nav />}
+          {this.props.hasHeader && 
+            <div>
+              <Nav />
+              <div id="subHeadingRoot" className="grey-border blue-grey-bg Nav--SubHdg" />
+            </div>
+          }
           <section className="content">
             <Grid fluid>
               <Routes />
