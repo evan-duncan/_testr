@@ -4,6 +4,7 @@ const discovery = require('./discovery');
 const errors = require('./errors');
 const healthz = require('./healthz');
 const paymentPlans = require('./paymentPlans');
+const projects = require('./projects');
 const tests = require('./tests');
 const users = require('./users');
 
@@ -13,6 +14,7 @@ module.exports = {
   discovery,
   healthz,
   paymentPlans,
+  projects,
   tests,
   users,
   errors, // ALWAYS LAST
