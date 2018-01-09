@@ -13,7 +13,6 @@ const initialState = {
 export default (state=initialState, action) => {
     switch(action.type) {
         case GET_PROJECT_SUCCESS:
-            console.log('here: ', action);
             return { ...action.project };
         case GET_PROJECT_FAILURE:
             return state;

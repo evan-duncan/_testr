@@ -97,17 +97,19 @@ function getProjectsFailure(error) {
 }
 
 async function getProject({ name, token }) {
-    return await fetch(`/api/projects/${name}`, {
+    const response =  await fetch(`/api/projects/${name}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`,
         },
         json: true,
     });
+
+    const json = await response.json();
+    return json.data;
 }
 
 function getProjectSuccess(project) {
-    console.log('success');
     return {
         type: GET_PROJECT_SUCCESS,
         project,
@@ -115,7 +117,6 @@ function getProjectSuccess(project) {
 }
 
 function getProjectFailure(err) {
-    console.log('failure');
     return {
         type: GET_PROJECT_FAILURE,
         error: err,
