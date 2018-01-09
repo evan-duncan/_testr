@@ -11,6 +11,7 @@ import License from './License';
 import About from './About';
 import Projects from './Projects';
 import CreateProject from './Projects/CreateProject';
+import Project from './Projects/Project';
 
 class Routes extends Component {
   render() {
@@ -25,6 +26,7 @@ class Routes extends Component {
         <Route path="/about" component={About} />
         <PrivateRoute exact path="/projects" component={Projects} isAuthenticated={isAuthenticated} />
         <Route exact path="/projects/new" component={CreateProject} />
+        <Route path="/projects/:name" component={Project} />
         <Route component={NotFound} />
       </Switch>
     );

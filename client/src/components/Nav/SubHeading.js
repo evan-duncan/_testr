@@ -13,7 +13,7 @@ export default class SubHeading extends Component {
         subHeadingRoot.appendChild(this.el);
     }
 
-    componentDidUnmount() {
+    componentWillUnmount() {
         const subHeadingRoot = document.getElementById('subHeadingRoot');
         subHeadingRoot.removeChild(this.el);
     }

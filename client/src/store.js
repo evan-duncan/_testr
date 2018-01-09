@@ -26,7 +26,7 @@ function loadState() {
 
 /**
  * Serialize JSON and store it in localstorage
- * @param {Object} state 
+ * @param {Object} state
  */
 function saveState(state) {
     try {
@@ -48,13 +48,14 @@ const store = createStore(
 
 /**
  * It is important to have the ability to persist some data on the client.
- * In this case we are going to push state into localstorage at most 
+ * In this case we are going to push state into localstorage at most
  * every second so that on a page refresh the state is back maintained.
  * We don't persist the entire store. We selectively choose the properties
  * within the store that we want to persist on the client.
  */
 store.subscribe(throttle(() => saveState({
     user: store.getState().user,
+    projects: store.getState().projects,
 }), 1000));
 
 export default store;

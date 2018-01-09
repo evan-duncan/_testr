@@ -10,7 +10,7 @@ class CreateProject extends Component {
         super(props);
 
         this.state = {
-            name: null,
+            name: '',
         };
 
         this.handleChange = this.handleChange.bind(this);

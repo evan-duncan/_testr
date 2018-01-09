@@ -1,13 +1,16 @@
-export const CREATE_PROJECT_SUCCESS = 'CREATE_PROJECT_SUCCESS';
-export const CREATE_PROJECT_FAILURE = 'CREATE_PROJECT_FAILURE';
-export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS';
-export const GET_PROJECTS_FAILURE = 'GET_PROJCETS_FAILURE';
+import { push } from 'react-router-redux';
+export const CREATE_PROJECT_SUCCESS = 'testr/project/CREATE_PROJECT_SUCCESS';
+export const CREATE_PROJECT_FAILURE = 'testr/project/CREATE_PROJECT_FAILURE';
+export const GET_PROJECTS_SUCCESS = 'testr/projects/GET_PROJECTS_SUCCESS';
+export const GET_PROJECTS_FAILURE = 'testr/projects/GET_PROJECTS_FAILURE';
+export const GET_PROJECT_SUCCESS = 'testr/project/GET_PROJECTS_SUCCESS';
+export const GET_PROJECT_FAILURE = 'testr/project/GET_PROJECTS_FAILURE';
 
 export function getProjects({ token }) {
     return dispatch => {
         return getProjects({ token }).then(
-            projects => dispatch(getSuccess(projects)),
-            err      => dispatch(getFailure(err))
+            projects => dispatch(getProjectsSuccess(projects)),
+            err      => dispatch(getProjectsFailure(err))
         );
     };
 }
@@ -15,8 +18,22 @@ export function getProjects({ token }) {
 export function createProject({ name, token }) {
     return dispatch => {
         return postProject({ name, token }).then(
-            project => dispatch(createSuccess(project)),
-            err     => dispatch(createFailure(err))
+            project => {
+                dispatch(createSuccess(project))
+                dispatch(push(`/projects/${encodeURIComponent(project.name)}`));
+            },
+            err => dispatch(createFailure(err))
+        );
+    };
+}
+
+export function getProject({ name }) {
+    return (dispatch, getState) => {
+        const { user } = getState();
+        const { access_token } = user.auth;
+        return getProject({ name, token: access_token }).then(
+            project => dispatch(getProjectSuccess(project)),
+            err     => dispatch(getProjectFailure(err))
         );
     };
 }
@@ -34,7 +51,8 @@ async function postProject({ name, token }) {
         }),
     });
 
-    return response;
+    const json = await response.json();
+    return json.data;
 }
 
 function createSuccess(project) {
@@ -52,25 +70,54 @@ function createFailure(err) {
 }
 
 async function getProjects({ token }) {
-    return await fetch('/api/projects', {
+    const response = await fetch('/api/projects', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
         },
         json: true,
     });
+
+    const json = await response.json();
+    return json.data;
 }
 
-function getSuccess(projects) {
+function getProjectsSuccess(projects) {
     return {
         type: GET_PROJECTS_SUCCESS,
         projects,
     };
 }
 
-function getFailure(error) {
+function getProjectsFailure(error) {
     return {
         type: GET_PROJECTS_FAILURE,
         error,
+    };
+}
+
+async function getProject({ name, token }) {
+    return await fetch(`/api/projects/${name}`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        json: true,
+    });
+}
+
+function getProjectSuccess(project) {
+    console.log('success');
+    return {
+        type: GET_PROJECT_SUCCESS,
+        project,
+    }
+}
+
+function getProjectFailure(err) {
+    console.log('failure');
+    return {
+        type: GET_PROJECT_FAILURE,
+        error: err,
     };
 }
