@@ -3,6 +3,7 @@ const Project = require('../models/project');
 const Owner = require('../models/owner');
 const envelope = require('../../lib/envelope');
 const HttpStatus = require('../../lib/httpstatus');
+const uniq = require('lodash.uniq');
 
 module.exports = (router) => {
     router.get('/projects', auth.bearer, index);
@@ -10,15 +11,16 @@ module.exports = (router) => {
     router.get('/projects/:name', auth.bearer, show);
 };
 
-function index(req, res, next) {
-    Project.query()
-        .where('owner_id', '=', req.user.id)
-        .then((projects) => {
-            const status = HttpStatus.OK;
-            const data = envelope(status, 'OK', projects);
-            res.status(status).json(data);
-        })
-        .catch(next);
+async function index(req, res, next) {
+    try {
+        const owners = await Owner.query().where('user_id', '=', req.user.id);
+        const ownerIds = uniq(owners.map(owner => owner.id));
+        const projects = await Project.query().where('owner_id', 'in', ownerIds)
+        const status = HttpStatus.OK;
+        res.status(status).json(envelope(status, 'OK', projects));
+    } catch (err) {
+        next(err);
+    }
 }
 
 function create(req, res, next) {

@@ -5,6 +5,17 @@ class Owner extends Model {
     return 'owners';
   }
 
+  static get jsonSchema() {
+    return {
+      type: 'object',
+      properties: {
+        id: { type: 'integer' },
+        user_id: { type: 'integer' },
+        organization_id: { type: 'integer' },
+      },
+    };
+  }
+
   static get relationMappings() {
     const Test = require('./test');
     const Step = require('./step');

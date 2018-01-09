@@ -39,6 +39,8 @@
     "js-yaml": "^3.10.0",
     "knex": "^0.13.0",
     "lodash": "^4.17.4",
+    "lodash.uniq": "^4.5.0",
+    "lodash.uniqby": "^4.7.0",
     "mysql": "^2.15.0",
     "oauth2orize": "^1.10.0",
     "objection": "^0.8.9",
