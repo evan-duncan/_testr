@@ -24,3 +24,15 @@
 .Projects--createNewCta {
     text-align: center;
 }
+
+.ProjectCard {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 2rem;
+    padding: 0.5rem;
+}
+
+.ProjectCard:hover {
+    background-color: #E7EBF3;
+}

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-
 export default class SubHeading extends Component {
     constructor(props) {
         super(props);
         this.el = document.createElement('div');
+        this.el.style.width = '100%';
+        this.el.style.textAlign = 'center';
     }
 
     componentDidMount() {

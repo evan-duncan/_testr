@@ -31,10 +31,7 @@ a {
 }
 
 a:link {}
-
-a:visited {
-    color: #673AB7;
-}
+a:visited {}
 
 a:focus,
 a:hover {

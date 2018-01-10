@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './Projects.css';
-import SubHeading from '../components/Nav/SubHeading';
+import ProjectsHeading from './ProjectsHeading';
 import CreateProject from './CreateProject';
 import { Route, withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProjects } from '../actions/project';
+import { Col } from 'react-flexbox-grid';
+import GettingStarted from './GettingStarted';
+import ProjectCard from './ProjectCard';
 
 class Projects extends Component {
     componentDidMount() {
@@ -15,20 +18,34 @@ class Projects extends Component {
     render() {
         return (
             <div className="Projects">
-                <SubHeading>Projects</SubHeading>
-                {!this.props.projects.length && 
-                    <div className="Projects--createNewWrapper">
-                        <div className="Projects--headline">
-                            <h2 className="Projects--hdg">Get Started with Testr</h2>
-                            <p className="Projects--gettingStarted">
-                                If you're new to Testr check out our Getting Started guide to get up and running.
-                            </p>
+                <ProjectsHeading>
+                    <Col xs={6} xsOffset={3}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <h1 style={{ 
+                                display: 'inline-flex',
+                                fontWeight: 'normal',
+                                paddingLeft: '1rem',
+                            }}>Projects</h1>
+                            <Link
+                                className="btn btn-secondary"
+                                style={{ 
+                                    display: 'inline-flex',
+                                    marginRight: '1rem',
+                                }}
+                                to={{
+                                    pathname: '/projects/new',
+                                    from: window.location.pathname,
+                                }}>
+                                Create New Project
+                            </Link>
                         </div>
-                        <div className="Projects--createNewCta">
-                            <Link className="btn btn-primary" to={{ pathname: "/projects/new", from: window.location.pathname }}>Create New Project</Link>
-                        </div>
-                    </div>
-                }
+                    </Col>
+                </ProjectsHeading>
+                {!this.props.projects.length 
+                    ? <GettingStarted /> 
+                    : <Col xs={6} xsOffset={3}>{this.props.projects.map((project, idx) => 
+                        <ProjectCard key={idx} {...project} />)}
+                    </Col>}
             </div>
         )
     }

@@ -3,8 +3,8 @@ export const CREATE_PROJECT_SUCCESS = 'testr/project/CREATE_PROJECT_SUCCESS';
 export const CREATE_PROJECT_FAILURE = 'testr/project/CREATE_PROJECT_FAILURE';
 export const GET_PROJECTS_SUCCESS = 'testr/projects/GET_PROJECTS_SUCCESS';
 export const GET_PROJECTS_FAILURE = 'testr/projects/GET_PROJECTS_FAILURE';
-export const GET_PROJECT_SUCCESS = 'testr/project/GET_PROJECTS_SUCCESS';
-export const GET_PROJECT_FAILURE = 'testr/project/GET_PROJECTS_FAILURE';
+export const GET_PROJECT_SUCCESS = 'testr/project/GET_PROJECT_SUCCESS';
+export const GET_PROJECT_FAILURE = 'testr/project/GET_PROJECT_FAILURE';
 
 export function getProjects({ token }) {
     return dispatch => {
