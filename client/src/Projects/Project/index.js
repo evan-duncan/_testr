@@ -9,7 +9,6 @@ class Project extends Component {
     componentWillMount() {
         const { dispatch } = this.props;
         dispatch(getProject({ name: this.props.routedName }));
-        console.log('props: ', this.props);
     }
 
     render() {
